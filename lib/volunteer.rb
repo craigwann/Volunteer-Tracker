@@ -1,10 +1,10 @@
 class Volunteer
-  attr_reader(:name, :project_id)
+  attr_reader(:name, :project_id, :id)
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @project_id = attributes.fetch(:project_id)
-    # @id = attributes.fetch(:id)
+    @id = attributes.fetch(:id)
   end
 
   def ==(another_name)
@@ -18,7 +18,8 @@ class Volunteer
     returned_volunteers.each() do |volunteer|
       name = volunteer.fetch("name")
       project_id = volunteer.fetch("project_id").to_i()
-      volunteers.push(Volunteer.new({:name => name, :project_id => project_id}))
+      id = volunteer.fetch('id').to_i
+      volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id =>id}))
     end
     volunteers
   end
@@ -28,7 +29,15 @@ class Volunteer
     @id = result.first().fetch("id").to_i()
   end
 
-
+  def self.find(id)
+   found_list = nil
+   Volunteer.all().each() do |list|
+     if list.id().==(id)
+       found_list = list
+     end
+   end
+   found_list
+ end
 
 
 
