@@ -26,7 +26,15 @@ class Project
     projects
   end
 
-
+  def self.find(id)
+     found_projects = nil
+     Project.all().each() do |project|
+       if project.id().==(id)
+         found_projects = project
+       end
+     end
+     found_projects
+   end
 
 
 
