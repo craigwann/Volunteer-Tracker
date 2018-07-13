@@ -27,16 +27,16 @@ post("/projects") do
   erb(:project_success)
 end
 
-# get("/lists/:id") do
-#   @list = List.find(params.fetch("id").to_i())
-#   erb(:list)
-# end
-#
-# post("/tasks") do
-#   description = params.fetch("description")
-#   list_id = params.fetch("list_id").to_i()
-#   @list = List.find(list_id)
-#   @task = Task.new({:description => description, :list_id => list_id})
-#   @task.save()
-#   erb(:task_success)
-# end
+get("/projects/:id") do
+  @project = Project.find(params.fetch("id").to_i())
+  erb(:project)
+end
+
+post("/volunteers") do
+  name = params.fetch("name")
+  project_id = params.fetch("project_id").to_i()
+  @project = Project.find(project_id)
+  @volunteer = Volunteer.new({:name => name, :project_id => project_id, :id =>nil})
+  @volunteer.save()
+  erb(:volunteer_success)
+end
