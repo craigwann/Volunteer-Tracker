@@ -27,27 +27,34 @@ class Project
   end
 
   def self.find(id)
-     found_projects = nil
-     Project.all().each() do |project|
-       if project.id().==(id)
-         found_projects = project
-       end
+   found_projects = nil
+   Project.all().each() do |project|
+     if project.id().==(id)
+       found_projects = project
      end
-     found_projects
    end
+   found_projects
+ end
 
-   def volunteers
-     proj_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{self.id};")
-     volunteers = []
-     proj_volunteers.each do |volunteer|
-       id = volunteer.fetch('id').to_i
-       name = volunteer.fetch('name')
-       project_id = volunteer.fetch('project_id').to_i
-       volunteers.push(Volunteer.new({:id => id, :name => name, :project_id => project_id}))
-     end
-     volunteers
+ def volunteers
+   proj_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{self.id};")
+   volunteers = []
+   proj_volunteers.each do |volunteer|
+     id = volunteer.fetch('id').to_i
+     name = volunteer.fetch('name')
+     project_id = volunteer.fetch('project_id').to_i
+     volunteers.push(Volunteer.new({:id => id, :name => name, :project_id => project_id}))
    end
+   volunteers
+ end
 
+ def update(attributes)
+   @title = attributes.fetch(:title, @title)
+   @id = self.id
+   if @title.length > 0
+     DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
+   end
+ end
 
 
 
