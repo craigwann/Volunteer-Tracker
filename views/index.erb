@@ -1,7 +1,9 @@
 <h1>Welcome to the Project Volunteer Tracker app</h1>
 
 <div class="container">
-  <form action="/projects" method="post">
+
+
+  <form action="/" method="post">
     <label for="title">Project Title:</label>
     <input id="title" name="title" type="text">
 
@@ -12,6 +14,20 @@
   <button><a href="/projects">View All Projects</a></button>
   <button><a href="/projects/new">Add New Project</a></button>
 
+  <% if @projects.any? %>
+    <h3>Here are your lists:</h3>
+
+    <ul>
+      <% @projects.each() do |project| %>
+        <li><a href="/project/<%= project.id()%>"><%= project.title() %></a> </li>
+      <% end %>
+    </ul>
+
+  <% else %>
+
+      <p>There are no projects yet!</p>
+
+  <% end %>
 
 
 

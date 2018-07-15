@@ -5,10 +5,25 @@ require("./lib/volunteer")
 require("./lib/project")
 require("pg")
 
-DB = PG.connect({:dbname => "volunteer_tracker_test"})
+DB = PG.connect({:dbname => "volunteer_tracker"})
 
 get("/") do
+  @projects = Project.all()
   erb(:index)
+end
+
+post("/") do
+  title = params.fetch('title')
+  project = Project.new({:title => title, :id => nil})
+  project.save
+  @projects = Project.all
+  erb(:index)
+end
+
+get('/project/:id') do
+  project_id = params.fetch('id').to_i
+  @project = Project.find(project_id)
+  erb(:project)
 end
 
 get('/projects') do
@@ -16,8 +31,22 @@ get('/projects') do
   erb(:projects)
 end
 
+delete('/project_delete') do
+  project_id = params.fetch('project_id').to_i
+  project = Project.find(project_id)
+  project.delete
+  @projects = Project.all
+  erb(:index)
+end
+
 get("/projects/new") do
   erb(:project_form)
+end
+
+get("/project_edit/:id") do
+  project_id = params.fetch('id').to_i
+  @project = Project.find(project_id)
+  erb(:project_edit)
 end
 
 post("/projects") do
@@ -27,8 +56,11 @@ post("/projects") do
   erb(:project_success)
 end
 
-get("/projects/:id") do
-  @project = Project.find(params.fetch("id").to_i())
+patch("/project/:id") do
+  project_id = params.fetch('id').to_i
+  title = params.fetch('title')
+  @project = Project.find(project_id)
+  @project.update({:title => title})
   erb(:project)
 end
 
