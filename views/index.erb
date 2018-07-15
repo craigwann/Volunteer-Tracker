@@ -10,16 +10,12 @@
     <button type="submit">Create Project</button>
   </form>
 
-
-  <button><a href="/projects">View All Projects</a></button>
-  <button><a href="/projects/new">Add New Project</a></button>
-
   <% if @projects.any? %>
-    <h3>Here are your lists:</h3>
+    <h3>Here are your projects:</h3>
 
     <ul>
       <% @projects.each() do |project| %>
-        <li><a href="/project/<%= project.id()%>"><%= project.title() %></a> </li>
+        <li><a href="/projects/<%= project.id()%>"><%= project.title() %></a> </li>
       <% end %>
     </ul>
 

@@ -1,0 +1,16 @@
+<h1>Information Page for the Volunteer: </h1>
+<h2><%= @volunteer.name %></h2>
+
+<form action="/volunteers/<%= @volunteer.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <h3>Update the Volunteer Name for: </h3>
+    <h4><%= @volunteer.name %></h4>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name">
+
+    <button type="submit" class="btn btn-primary">Update Volunteer</button>
+  </div>
+</form>
+
+<a href="/">Click here to return home</a>

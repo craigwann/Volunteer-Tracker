@@ -5,7 +5,7 @@
 
   <ul>
     <% @project.volunteers().each() do |volunteer| %>
-      <li><%= volunteer.name() %> </li>
+      <li><a href="/volunteers/<%= volunteer.id()%>"><%= volunteer.name() %></a> </li>
     <% end %>
   </ul>
 
