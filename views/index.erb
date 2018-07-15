@@ -26,6 +26,17 @@
   <% end %>
 
 
+  <% if @volunteers.any?() %>
+    <h3>Here are all the Volunteers in this project:</h3>
 
+    <ul>
+      <% @volunteers.each() do |volunteer| %>
+        <li><a href="/volunteers/<%= volunteer.id()%>"><%= volunteer.name() %></a> </li>
+      <% end %>
+    </ul>
+
+    <% else %>
+      <p>There are no volunteers on this project!</p>
+  <% end %>
 
 </div>

@@ -1,5 +1,4 @@
-<h1>Information Page for the Volunteer: </h1>
-<h2><%= @volunteer.name %></h2>
+<h1>Information Page for the Volunteer:  <%= @volunteer.name %> </h1>
 
 <form action="/volunteers/<%= @volunteer.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -8,9 +7,15 @@
     <h4><%= @volunteer.name %></h4>
     <label for="name">Name</label>
     <input type="text" id="name" name="name">
-
     <button type="submit" class="btn btn-primary">Update Volunteer</button>
   </div>
 </form>
+
+<form action="/volunteer_delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="id" value="<%= @volunteer.id %>">
+  <button type="submit" class="btn btn-danger">Delete Volunteer</button>
+</form>
+
 
 <a href="/">Click here to return home</a>
