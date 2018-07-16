@@ -65,10 +65,6 @@ delete('/volunteer_delete') do
   erb(:index)
 end
 
-get("/projects/new") do
-  erb(:project_form)
-end
-
 get("/project_edit/:id") do
   project_id = params.fetch('id').to_i
   @project = Project.find(project_id)
