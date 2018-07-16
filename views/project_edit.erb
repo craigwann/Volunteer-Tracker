@@ -1,17 +1,39 @@
-<form action="/project/<%= @project.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <div class="form-group">
-    <h3>Update the Project Title for: </h3>
-    <h4><%= @project.title %></h4>
-    <label for="title"></label>
-    <input type="text" id="title" name="title">
+<div class="jumbotron">
+  <h1>Update Project: <%= @project.title %></h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Update Project</h3>
+    </div>
+      <div class="panel-body">
+        <form action="/project/<%= @project.id %>" method="post">
+          <input type="hidden" name="_method" value="patch">
+          <div class="form-group">
 
-    <button type="submit" class="btn btn-primary">Update Project</button>
+            <h4><%= @project.title %></h4>
+            <label for="title"></label>
+            <input type="text" id="title" name="title">
+
+            <button type="submit" class="btn btn-primary">Update Project</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
   </div>
-</form>
+</div>
 
-<form action="/project_delete" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="hidden" name="project_id" value="<%= @project.id %>">
-  <button type="submit" class="btn btn-danger">Delete Project</button>
-</form>
+<div class="row">
+  <div class="col-md-6">
+    <form action="/project_delete" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="project_id" value="<%= @project.id %>">
+      <button type="submit" class="btn btn-danger">Delete Project</button>
+    </form>
+    <br>
+
+    <button class="btn btn-primary"><a href="/">Click here to return home</a></button>
+  </div>
+</div>

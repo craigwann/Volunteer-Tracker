@@ -1,15 +1,26 @@
-<h1>Information Page for the Volunteer:  <%= @volunteer.name %> </h1>
-
-<form action="/volunteers/<%= @volunteer.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <div class="form-group">
-    <h3>Update the Volunteer Name for: </h3>
-    <h4><%= @volunteer.name %></h4>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name">
-    <button type="submit" class="btn btn-primary">Update Volunteer</button>
+<div class="jumbotron">
+  <h1>Volunteer:  <%= @volunteer.name %> </h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Change/update Name for: <%= @volunteer.name %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/volunteers/<%= @volunteer.id %>" method="post">
+          <input type="hidden" name="_method" value="patch">
+          <div class="form-group">
+            <h4>Change the Volunteer Name for: <%= @volunteer.name %></h4>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+            <button type="submit" class="btn btn-success">Update Volunteer</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+</div>
 
 <form action="/volunteer_delete" method="post">
   <input type="hidden" name="_method" value="delete">
@@ -17,5 +28,5 @@
   <button type="submit" class="btn btn-danger">Delete Volunteer</button>
 </form>
 
-
-<a href="/">Click here to return home</a>
+<br>
+<button class="btn btn-primary"><a href="/">Click here to return home</a></button>

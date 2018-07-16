@@ -1,42 +1,75 @@
-<h1>Welcome to the Project Volunteer Tracker app</h1>
+<div class="jumbotron">
+  <h1>Project/Volunteer Tracker app</h1>
+</div>
 
 <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Add a New Project:</h3>
+        </div>
+        <div class="panel-body">
+          <form action="/" method="post">
+            <label for="title">New Project Title:</label>
+            <input id="title" name="title" type="text">
+            <button class="btn btn-info" type="submit">Create Project</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Here are the current projects:</h3>
+        </div>
+        <div class="panel-body">
+          <% if @projects.any? %>
+            <ul>
+              <% @projects.each() do |project| %>
+                <li><a href="/projects/<%= project.id()%>"><%= project.title() %></a> </li>
+              <% end %>
+            </ul>
+          <% else %>
+              <p>There are no projects yet!</p>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Here are all the current Volunteers:</h3>
+        </div>
+        <div class="panel-body">
+          <% if @volunteers.any?() %>
+            <ul>
+              <% @volunteers.each() do |volunteer| %>
+                <li><a href="/volunteers/<%= volunteer.id()%>"><%= volunteer.name() %></a> </li>
+              <% end %>
+            </ul>
+            <% else %>
+              <p>There are no volunteers on this project!</p>
+          <% end %>
 
 
-  <form action="/" method="post">
-    <label for="title">Project Title:</label>
-    <input id="title" name="title" type="text">
 
-    <button type="submit">Create Project</button>
-  </form>
-
-  <% if @projects.any? %>
-    <h3>Here are your projects:</h3>
-
-    <ul>
-      <% @projects.each() do |project| %>
-        <li><a href="/projects/<%= project.id()%>"><%= project.title() %></a> </li>
-      <% end %>
-    </ul>
-
-  <% else %>
-
-      <p>There are no projects yet!</p>
-
-  <% end %>
+        </div>
+      </div>
 
 
-  <% if @volunteers.any?() %>
-    <h3>Here are all the Volunteers in this project:</h3>
 
-    <ul>
-      <% @volunteers.each() do |volunteer| %>
-        <li><a href="/volunteers/<%= volunteer.id()%>"><%= volunteer.name() %></a> </li>
-      <% end %>
-    </ul>
+    </div>
 
-    <% else %>
-      <p>There are no volunteers on this project!</p>
-  <% end %>
+
+
+  </div>
 
 </div>

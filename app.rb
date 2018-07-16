@@ -18,6 +18,7 @@ post("/") do
   project = Project.new({:title => title, :id => nil})
   project.save
   @projects = Project.all
+  @volunteers = Volunteer.all()
   erb(:index)
 end
 
@@ -51,6 +52,7 @@ delete('/project_delete') do
   project = Project.find(project_id)
   project.delete
   @projects = Project.all
+  @volunteers = Volunteer.all()
   erb(:index)
 end
 
@@ -59,6 +61,7 @@ delete('/volunteer_delete') do
   volunteer = Volunteer.find(id)
   volunteer.delete
   @projects = Project.all
+  @volunteers = Volunteer.all()
   erb(:index)
 end
 
@@ -93,5 +96,5 @@ post("/volunteers") do
   @project = Project.find(project_id)
   @volunteer = Volunteer.new({:name => name, :project_id => project_id, :id =>nil})
   @volunteer.save()
-  erb(:volunteer_success)
+  erb(:project)
 end

@@ -11,8 +11,10 @@ class Project
   end
 
   def save
-    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
-    @id = result.first().fetch("id").to_i()
+    if title.length > 0
+      result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
+      @id = result.first().fetch("id").to_i()
+    end
   end
 
   def self.all
